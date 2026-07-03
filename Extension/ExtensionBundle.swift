@@ -12,6 +12,6 @@ import SwiftUI
 @main
 struct ExtensionBundle: WidgetBundle {
     var body: some Widget {
-        MyWidget()
+        WordWidget()
     }
 }

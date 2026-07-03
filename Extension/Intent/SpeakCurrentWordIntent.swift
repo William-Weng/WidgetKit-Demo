@@ -18,7 +18,7 @@ struct SpeakCurrentWordIntent: AppIntent {
     static let synthesizer = AVSpeechSynthesizer()
 
     func perform() async throws -> some IntentResult {
-        let groupID = Constant.suiteName
+        let groupID = Constant.groupID
         let sharedDefaults = UserDefaults(suiteName: groupID)
         
         // 📥 讀取單字庫與當前的 Index

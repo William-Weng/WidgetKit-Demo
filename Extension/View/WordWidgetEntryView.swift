@@ -1,5 +1,5 @@
 //
-//  MyWidgetEntryView.swift
+//  WordWidgetEntryView.swift
 //  ExtensionExtension
 //
 //  Created by William.Weng on 2026/7/2.
@@ -10,7 +10,8 @@ import WidgetKit
 import AppIntents
 
 // 4. 小工具 UI 畫面（雙按鈕排版）
-struct MyWidgetEntryView: View {
+struct WordWidgetEntryView: View {
+    
     var entry: Provider.Entry
     
     // 🌟 核心關鍵：引入系統環境變數，用來得知目前小工具是什麼尺寸
@@ -41,11 +42,14 @@ struct MyWidgetEntryView: View {
                 .containerBackground(.background, for: .widget)
         }
     }
+}
+
+// MARK: - 私有屬性
+private extension WordWidgetEntryView {
     
-    // ==========================================
-    // 📦 佈局 A：原本的小尺寸排版 (抽出變成獨立變數)
-    // ==========================================
+    // 佈局 A：原本的小尺寸排版
     var smallLayout: some View {
+        
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 8) {
                 
@@ -88,9 +92,7 @@ struct MyWidgetEntryView: View {
         .widgetURL(URL(string: "wordwidget://detail?word=\(entry.word)"))
     }
     
-    // ==========================================
-    // 📦 佈局 B：全新的中尺寸排版 (左右對開)
-    // ==========================================
+    // 全新的中尺寸排版 (左右對開)
     var mediumLayout: some View {
         HStack(spacing: 16) {
             // 左半邊：沿用原本的小佈局內容（拿掉按鈕，留下主單字展示）
@@ -165,3 +167,8 @@ struct MyWidgetEntryView: View {
         .widgetURL(URL(string: "wordwidget://detail?word=\(entry.word)"))
     }
 }
+
+#Preview {
+    WordWidgetEntryView(entry: .snapshot)
+}
+

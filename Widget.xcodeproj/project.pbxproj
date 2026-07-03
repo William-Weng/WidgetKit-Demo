@@ -55,7 +55,9 @@
 		81FE337E2FF6500D00B837F5 /* Exceptions for "Widget" folder in "ExtensionExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Constant.swift,
+				Common/Constant.swift,
+				Common/Extension.swift,
+				Common/Vocabulary.swift,
 			);
 			target = 811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */;
 		};
