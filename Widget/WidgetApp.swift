@@ -31,8 +31,7 @@ private extension WidgetApp {
         guard url.scheme == "wordwidget" else { return }
 
         switch url.host {
-        case "detail":
-            detailAction(url: url, key: "word")
+        case "detail": detailAction(url: url, key: "word")
         default: break
         }
     }
@@ -42,7 +41,7 @@ private extension WidgetApp {
     ///   - url: 傳來的URL
     ///   - key: 要讀取的Key值
     func detailAction(url: URL, key: String) {
-        guard let word = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == key })?.value else { return }
+        guard let word = url.queryValue(for: "word") else { return }
         openDictionary(word)
     }
     

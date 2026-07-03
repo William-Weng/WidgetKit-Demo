@@ -29,3 +29,18 @@ extension Data {
         try? JSONDecoder().decode([T].self, from: self)
     }
 }
+
+// MARK: - URL
+extension URL {
+    
+    /// 尋找Query的參數值 (wordie://word?id=123&difficulty=easy => ["difficulty": "easy"] => "easy")
+    /// - Parameter key: 參數名稱
+    /// - Returns: String?
+    func queryValue(for key: String) -> String? {
+        
+        URLComponents(url: self, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first(where: { $0.name == key })?
+            .value
+    }
+}
