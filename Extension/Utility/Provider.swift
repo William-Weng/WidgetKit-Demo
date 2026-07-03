@@ -46,18 +46,9 @@ private extension Provider {
     /// 從 shared container 讀取實際資料並轉成 Timeline Entry
     var timelineEntries: [SimpleEntry]? {
         
-        guard let sharedDefaults = Constant.sharedDefaults,
-              let savedData = sharedDefaults.data(forKey: Constant.wordsKey),
-              let allWords: [Vocabulary] = savedData.decoded()
-        else {
-            return nil
-        }
-        
-        let currentIndex = sharedDefaults.integer(forKey: Constant.indexKey)
-        let wordIndex = currentIndex % allWords.count
-        let target = allWords[wordIndex]
+        guard let target = Utility.shared.nextWord(step: 0) else { return nil }
         let entry = SimpleEntry(date: .now, word: target.word, definition: target.definition)
-                
+        
         return [entry]
     }
 }

@@ -13,33 +13,15 @@ import AppIntents
 struct WordWidgetEntryView: View {
     
     var entry: Provider.Entry
-    
+        
     // 🌟 核心關鍵：引入系統環境變數，用來得知目前小工具是什麼尺寸
     @Environment(\.widgetFamily) var family
-
+    
     var body: some View {
-        // 使用 switch 判斷目前尺寸
         switch family {
-        case .systemSmall:
-            // ─── 小尺寸：維持原本的單張單字卡設計 ───
-            smallLayout
-                .containerBackground(
-                    LinearGradient(colors: [Color.blue, Color.purple.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing),
-                    for: .widget
-                )
-            
-        case .systemMedium, .systemLarge:
-            // ─── 中尺寸：改用左右雙欄排版 ───
-            mediumLayout
-                .containerBackground(
-                    LinearGradient(colors: [Color.purple.opacity(0.8), Color.indigo], startPoint: .topLeading, endPoint: .bottomTrailing),
-                    for: .widget
-                )
-            
-        default:
-            // 保底處理（防呆）
-            smallLayout
-                .containerBackground(.background, for: .widget)
+        case .systemSmall: smallLayout
+        case .systemMedium, .systemLarge: mediumLayout
+        default: smallLayout
         }
     }
 }
@@ -47,128 +29,159 @@ struct WordWidgetEntryView: View {
 // MARK: - 私有屬性
 private extension WordWidgetEntryView {
     
-    // 佈局 A：原本的小尺寸排版
+    /// 小尺寸排版
     var smallLayout: some View {
         
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 8) {
-                
+            
+            HStack(spacing: 12) {
+                speakWordButton(font: .system(size: 11, weight: .bold))
+                changeWordButton(font: .system(size: 11, weight: .bold))
                 Spacer()
-                
-                Button(intent: SpeakCurrentWordIntent()) {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.blue)
-                        .padding(5)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
-                
-                Button(intent: ChangeWordIntent()) {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.blue)
-                        .padding(5)
-                        .background(Color.white)
-                        .clipShape(Circle())
-                }
-                .buttonStyle(.plain)
             }
             
             Spacer()
-            Text(entry.word)
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                .minimumScaleFactor(0.6)
-            
-            Text(entry.definition)
-                .font(.subheadline)
-                .foregroundColor(.white.opacity(0.9))
-                .padding(.top, 2)
+            wordText(font: .system(size: 24, weight: .bold, design: .rounded))
+            definitionText
             Spacer()
         }
         .padding(14)
+        .containerBackground(gradientBackground, for: .widget)
         .widgetURL(URL(string: "wordwidget://detail?word=\(entry.word)"))
     }
     
-    // 全新的中尺寸排版 (左右對開)
+    /// 中尺寸排版 (左右對開)
     var mediumLayout: some View {
+        
         HStack(spacing: 16) {
-            // 左半邊：沿用原本的小佈局內容（拿掉按鈕，留下主單字展示）
+
             VStack(alignment: .leading, spacing: 4) {
-                Text("今日主修單字")
-                    .font(.system(size: 11, weight: .bold))
-                    .foregroundColor(.white.opacity(0.7))
-                
                 Spacer()
-                
-                Text(entry.word)
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                
-                Text(entry.definition)
-                    .font(.headline)
-                    .foregroundColor(.white.opacity(0.9))
-                
+                wordText(font: .system(size: 36, weight: .bold, design: .rounded))
+                definitionText
                 Spacer()
-                
-                // 喇叭與換字按鈕挪到左下方，中尺寸更好點擊
                 HStack(spacing: 12) {
-                    Button(intent: SpeakCurrentWordIntent()) {
-                        Label("發音", systemImage: "speaker.wave.2.fill")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(.purple)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                    }
-                    .buttonStyle(.plain)
-                    
-                    Button(intent: ChangeWordIntent()) {
-                        Label("換字", systemImage: "arrow.clockwise")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(.purple)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                    }
-                    .buttonStyle(.plain)
+                    speakWordButton(font: .system(size: 16, weight: .bold))
+                    changeWordButton(font: .system(size: 16, weight: .bold))
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            // 右半邊：延伸顯示明日/其他複習單字列表
             VStack(alignment: .leading, spacing: 8) {
-                Text("📋 延伸複習")
-                    .font(.system(size: 11, weight: .bold))
-                    .foregroundColor(.white.opacity(0.7))
-                
-                Divider().background(Color.white.opacity(0.3))
-                
-                // 這裡先寫死兩組假資料做示範，您以後可以改用陣列傳入
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("• Optimize (優化)")
-                        .font(.system(size: 12, weight: .medium))
-                    Text("• Timeline (時間軸)")
-                        .font(.system(size: 12, weight: .medium))
-                    Text("• Framework (架構)")
-                        .font(.system(size: 12, weight: .medium))
-                }
-                .foregroundColor(.white)
-                
+                subTitleText
+                Divider()
+                    .background(Color.white.opacity(0.8))
+                reviewItems(count: 5)
+                    .foregroundColor(.white)
                 Spacer()
             }
-            .frame(width: 140, alignment: .leading)
+            .frame(width: 100, alignment: .leading)
         }
         .padding(16)
+        .containerBackground(gradientBackground, for: .widget)
         .widgetURL(URL(string: "wordwidget://detail?word=\(entry.word)"))
     }
 }
 
-#Preview {
-    WordWidgetEntryView(entry: .snapshot)
+// MARK: - 私有屬性
+private extension WordWidgetEntryView {
+    
+    /// 中譯顯示
+    var definitionText: some View {
+        Text(entry.definition)
+            .font(.subheadline)
+            .foregroundColor(.white.opacity(0.9))
+            .padding(.top, 2)
+    }
+    
+    /// 右邊的子標題
+    var subTitleText: some View {
+        Text("📋 延伸複習")
+            .font(.system(size: 11, weight: .bold))
+            .foregroundColor(.white.opacity(0.7))
+    }
+    
+    /// 漸層色背景
+    var gradientBackground: some ShapeStyle {
+        LinearGradient(colors: [.purple.opacity(0.8), .indigo], startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+}
+
+// MARK: - 私有屬性
+private extension WordWidgetEntryView {
+    
+    /// 閱讀單字按鈕
+    func speakWordButton(font: Font?) -> some View {
+        
+        Button(intent: SpeakWordIntent()) {
+            Image(systemName: "speaker.wave.2.fill")
+                .font(font)
+                .foregroundColor(.purple)
+                .padding(5)
+                .background(Color.white)
+                .clipShape(Circle())
+        }
+        .buttonStyle(.plain)
+    }
+    
+    /// 改變單字按鈕
+    func changeWordButton(font: Font?) -> some View {
+        
+        Button(intent: ChangeWordIntent()) {
+            Image(systemName: "arrow.clockwise")
+                .font(font)
+                .foregroundColor(.purple)
+                .padding(5)
+                .background(Color.white)
+                .clipShape(Circle())
+        }
+        .buttonStyle(.plain)
+    }
+    
+    /// 單字顯示
+    func wordText(font: Font?) -> some View {
+        
+        Text(entry.word)
+            .foregroundColor(.white)
+            .font(font)
+            .minimumScaleFactor(0.6)
+    }
+    
+    /// 延伸複習單字框
+    func reviewItems(count: Int) -> some View {
+        
+        VStack(alignment: .leading, spacing: 6) {
+            ForEach(reviews(count: count), id: \.self) { review in
+                Text(review)
+                    .font(.system(size: 12, weight: .medium))
+            }
+        }
+    }
+}
+
+// MARK: - 私有API
+private extension WordWidgetEntryView {
+    
+    /// 複習的單字 (後面的字)
+    /// - Parameter count: 數量
+    /// - Returns: [單字]
+    func reviews(count: Int) -> [String] {
+        
+        let items: [String] = (1...count).compactMap { step in
+            guard let target = Utility.shared.nextWord(step: step) else { return nil }
+            return "• \(target.word)"
+        }
+        
+        return items
+    }
+}
+
+// MARK: - PreviewProvider
+struct WordWidgetEntryView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        WordWidgetEntryView(entry: .snapshot)
+            .previewContext(WidgetPreviewContext(family: .systemMedium ))
+    }
 }
 
