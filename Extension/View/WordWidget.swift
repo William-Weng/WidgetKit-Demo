@@ -11,7 +11,7 @@ import WidgetKit
 /// 小工具設定
 struct WordWidget: Widget {
     
-    let kind: String = "MyWidget"
+    let kind: String = "WordWidget"
     
     private let title = "單字複習卡"
     private let subtitle = "天天自動輪播新單字，幫你高效背單字。"
