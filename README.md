@@ -4,4 +4,4 @@
 
 ## [運行畫面](https://peterpanswift.github.io/iphone-bezels/)
 
-![](https://github.com/user-attachments/assets/f35756fa-35cf-40fc-a212-7f26a2cdc4eb)
+https://github.com/user-attachments/assets/97374c65-8b69-4798-8ced-c4c32c1ecc72
