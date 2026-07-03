@@ -32,7 +32,7 @@ private extension ChangeWordIntent {
             return .result()
         }
         
-        print("🚀 [- Intent] 使用者點擊了按鈕，Index 已切換至: \(nextIndex)")
+        print("🚀 [Intent] 使用者點擊了按鈕，Index 已切換至: \(nextIndex)")
         return .result()
     }
 }
