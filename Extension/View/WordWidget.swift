@@ -8,7 +8,7 @@
 import SwiftUI
 import WidgetKit
 
-// 5. 小工具設定
+/// 小工具設定
 struct WordWidget: Widget {
     
     let kind: String = "MyWidget"

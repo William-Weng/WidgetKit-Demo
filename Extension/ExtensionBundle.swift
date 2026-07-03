@@ -8,7 +8,7 @@
 import WidgetKit
 import SwiftUI
 
-// 5. 小工具 Bundle 進入點
+/// 小工具 Bundle 進入點
 @main
 struct ExtensionBundle: WidgetBundle {
     var body: some Widget {

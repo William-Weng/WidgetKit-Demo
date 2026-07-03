@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		811DE4002FF6445200D8E8C1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811DE3FF2FF6445200D8E8C1 /* WidgetKit.framework */; };
 		811DE4022FF6445200D8E8C1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811DE4012FF6445200D8E8C1 /* SwiftUI.framework */; };
-		811DE40F2FF6445300D8E8C1 /* ExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 811DE3FD2FF6445200D8E8C1 /* ExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		811DE40F2FF6445300D8E8C1 /* Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 811DE3FD2FF6445200D8E8C1 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				811DE40F2FF6445300D8E8C1 /* ExtensionExtension.appex in Embed Foundation Extensions */,
+				811DE40F2FF6445300D8E8C1 /* Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,27 +38,27 @@
 
 /* Begin PBXFileReference section */
 		811DE3EB2FF6443A00D8E8C1 /* Widget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Widget.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		811DE3FD2FF6445200D8E8C1 /* ExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		811DE3FD2FF6445200D8E8C1 /* Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		811DE3FF2FF6445200D8E8C1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		811DE4012FF6445200D8E8C1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		811DE4102FF6445300D8E8C1 /* Exceptions for "Extension" folder in "ExtensionExtension" target */ = {
+		811DE4102FF6445300D8E8C1 /* Exceptions for "Extension" folder in "Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */;
+			target = 811DE3FC2FF6445200D8E8C1 /* Extension */;
 		};
-		81FE337E2FF6500D00B837F5 /* Exceptions for "Widget" folder in "ExtensionExtension" target */ = {
+		81FE337E2FF6500D00B837F5 /* Exceptions for "Widget" folder in "Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Common/Constant.swift,
 				Common/Extension.swift,
 				Common/Vocabulary.swift,
 			);
-			target = 811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */;
+			target = 811DE3FC2FF6445200D8E8C1 /* Extension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -66,7 +66,7 @@
 		811DE3ED2FF6443A00D8E8C1 /* Widget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				81FE337E2FF6500D00B837F5 /* Exceptions for "Widget" folder in "ExtensionExtension" target */,
+				81FE337E2FF6500D00B837F5 /* Exceptions for "Widget" folder in "Extension" target */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 		811DE4032FF6445200D8E8C1 /* Extension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				811DE4102FF6445300D8E8C1 /* Exceptions for "Extension" folder in "ExtensionExtension" target */,
+				811DE4102FF6445300D8E8C1 /* Exceptions for "Extension" folder in "Extension" target */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				811DE3EB2FF6443A00D8E8C1 /* Widget.app */,
-				811DE3FD2FF6445200D8E8C1 /* ExtensionExtension.appex */,
+				811DE3FD2FF6445200D8E8C1 /* Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,9 +156,9 @@
 			productReference = 811DE3EB2FF6443A00D8E8C1 /* Widget.app */;
 			productType = "com.apple.product-type.application";
 		};
-		811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */ = {
+		811DE3FC2FF6445200D8E8C1 /* Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 811DE4112FF6445300D8E8C1 /* Build configuration list for PBXNativeTarget "ExtensionExtension" */;
+			buildConfigurationList = 811DE4112FF6445300D8E8C1 /* Build configuration list for PBXNativeTarget "Extension" */;
 			buildPhases = (
 				811DE3F92FF6445200D8E8C1 /* Sources */,
 				811DE3FA2FF6445200D8E8C1 /* Frameworks */,
@@ -171,11 +171,11 @@
 			fileSystemSynchronizedGroups = (
 				811DE4032FF6445200D8E8C1 /* Extension */,
 			);
-			name = ExtensionExtension;
+			name = Extension;
 			packageProductDependencies = (
 			);
 			productName = ExtensionExtension;
-			productReference = 811DE3FD2FF6445200D8E8C1 /* ExtensionExtension.appex */;
+			productReference = 811DE3FD2FF6445200D8E8C1 /* Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +211,7 @@
 			projectRoot = "";
 			targets = (
 				811DE3EA2FF6443900D8E8C1 /* Widget */,
-				811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */,
+				811DE3FC2FF6445200D8E8C1 /* Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -253,7 +253,7 @@
 /* Begin PBXTargetDependency section */
 		811DE40E2FF6445300D8E8C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 811DE3FC2FF6445200D8E8C1 /* ExtensionExtension */;
+			target = 811DE3FC2FF6445200D8E8C1 /* Extension */;
 			targetProxy = 811DE40D2FF6445300D8E8C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -549,7 +549,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		811DE4112FF6445300D8E8C1 /* Build configuration list for PBXNativeTarget "ExtensionExtension" */ = {
+		811DE4112FF6445300D8E8C1 /* Build configuration list for PBXNativeTarget "Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811DE4122FF6445300D8E8C1 /* Debug */,

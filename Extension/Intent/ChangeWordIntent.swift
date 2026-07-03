@@ -7,7 +7,7 @@
 
 import AppIntents
 
-// 互動按鈕必備框架 - AppIntents (iOS 17+ 互動按鈕必備框架)
+/// 互動按鈕必備框架 - AppIntents (iOS 17+ 互動按鈕必備框架)
 struct ChangeWordIntent: AppIntent {
         
     static var title: LocalizedStringResource = "換下一個單字"    // 必須為這個意圖設定一個唯一的標題
