@@ -64,10 +64,12 @@ private extension WordWidgetEntryView {
                     speakWordButton(font: .system(size: 16, weight: .bold))
                     changeWordButton(font: .system(size: 16, weight: .bold))
                 }
+                Spacer()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack(alignment: .leading, spacing: 8) {
+                Spacer()
                 subTitleText
                 Divider()
                     .background(Color.white.opacity(0.8))
